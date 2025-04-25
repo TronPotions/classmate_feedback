@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Classmate Feedback Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f9fc;
+      padding: 20px;
+    }
+    .classmate {
+      background-color: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      margin-bottom: 10px;
+    }
+    .category {
+      margin: 15px 0;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type="range"] {
+      width: 60%;
+      margin-right: 10px;
+    }
+    input[type="number"] {
+      width: 60px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Classmate Feedback Form</h1>
+
+  <form id="feedbackForm" onsubmit="handleSubmit(event)">
+    <div id="formContent"></div>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const classmates = [
+      "Classmate 1", "Classmate 2", "Classmate 3", "Classmate 4", "Classmate 5", "Classmate 6",
+      "Classmate 7", "Classmate 8", "Classmate 9", "Classmate 10", "Classmate 11", "Classmate 12",
+      "Classmate 13", "Classmate 14", "Classmate 15", "Classmate 16", "Classmate 17", "Classmate 18"
+    ];
+
+    const categories = ["Participation", "Teamwork", "Creativity", "Responsibility", "Effort", "Communication"];
+
+    const formContent = document.getElementById("formContent");
+
+    classmates.forEach((name, index) => {
+      const div = document.createElement("div");
+      div.className = "classmate";
+      div.innerHTML = `<h2>${name}</h2>`;
+
+      categories.forEach(category => {
+        const id = `classmate${index}_${category}`;
+        div.innerHTML += `
+          <div class="category">
+            <label for="${id}">${category}</label>
+            <input type="range" id="${id}_slider" name="${id}" min="0" max="100" value="50" oninput="document.getElementById('${id}_num').value = this.value">
+            <input type="number" id="${id}_num" min="0" max="100" value="50" oninput="document.getElementById('${id}_slider').value = this.value">
+          </div>
+        `;
+      });
+
+      formContent.appendChild(div);
+    });
+
+    function handleSubmit(event) {
+      event.preventDefault();
+      alert("Form submitted! (You can now build in logic to save or export this data.)");
+    }
+  </script>
+</body>
+</html>
