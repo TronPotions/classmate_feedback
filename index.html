@@ -64,7 +64,7 @@
       "Classmate 13", "Classmate 14", "Classmate 15", "Classmate 16", "Classmate 17", "Classmate 18"
     ];
 
-    const categories = ["Participation", "Teamwork", "Creativity", "Responsibility", "Effort", "Communication"];
+    const categories = ["Power", "Hustle", "Precision", "Passing", "Defence"];
 
     const formContent = document.getElementById("formContent");
 
@@ -88,9 +88,38 @@
     });
 
     function handleSubmit(event) {
-      event.preventDefault();
-      alert("Form submitted! (You can now build in logic to save or export this data.)");
+  event.preventDefault();
+
+  const results = [];
+  
+  classmates.forEach((name, index) => {
+    categories.forEach(category => {
+      const id = `classmate${index}_${category}`;
+      const value = document.getElementById(`${id}_slider`).value;
+      results.push({
+        classmate: name,
+        category: category,
+        value: value
+      });
+    });
+  });
+
+  fetch('https://script.google.com/macros/s/AKfycbyD_Zu0hWPJ8BIOGlxjo-cgPQrQSjRfNJwSvDNDFcPWlbBWaJ-FovWlUJ8PXnTgTkXa/exec', {
+    method: 'POST',
+    body: JSON.stringify(results),
+    headers: {
+      'Content-Type': 'application/json'
     }
+  })
+  .then(res => res.text())
+  .then(response => {
+    alert("Submission successful!");
+  })
+  .catch(err => {
+    alert("Error submitting form.");
+    console.error(err);
+  });
+}
   </script>
 </body>
 </html>
