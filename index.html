@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Classmate Feedback Form</title>
+  <title>G League Evaluation Form</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -50,9 +50,14 @@
   </style>
 </head>
 <body>
-  <h1>Classmate Feedback Form</h1>
+  <h1>G League Evaluation Form</h1>
 
-  <form id="feedbackForm" method="GET" onsubmit="handleSubmit(event)">
+  <form id="feedbackForm" action="https://getform.io/f/bwnqpwma" method="POST">
+    <div class="category">
+      <label for="submitter">Your Name</label>
+      <input type="text" id="submitter" name="submitter" required />
+    </div>
+
     <div id="formContent"></div>
     <button type="submit">Submit</button>
   </form>
@@ -64,7 +69,7 @@
       "Classmate 13", "Classmate 14", "Classmate 15", "Classmate 16", "Classmate 17", "Classmate 18"
     ];
 
-    const categories = ["Power", "Hustle", "Precision", "Passing", "Defence"];
+    const categories = ["Power", "Hustle", "Shooting Precision", "Passing", "Defense"];
 
     const formContent = document.getElementById("formContent");
 
@@ -74,34 +79,18 @@
       div.innerHTML = `<h2>${name}</h2>`;
 
       categories.forEach(category => {
-        const id = `classmate${index}_${category}`;
+        const id = `classmate${index}_${category.replace(/\s+/g, '')}`;
         div.innerHTML += `
           <div class="category">
             <label for="${id}">${category}</label>
-            <input type="range" id="${id}_slider" name="${id}" min="0" max="100" value="50" oninput="document.getElementById('${id}_num').value = this.value">
-            <input type="number" id="${id}_num" min="0" max="100" value="50" oninput="document.getElementById('${id}_slider').value = this.value">
+            <input type="range" id="${id}_slider" min="0" max="100" value="50" oninput="document.getElementById('${id}_num').value = this.value">
+            <input type="number" id="${id}_num" name="${name}_${category}" min="0" max="100" value="50" oninput="document.getElementById('${id}_slider').value = this.value">
           </div>
         `;
       });
 
       formContent.appendChild(div);
     });
-
-     function handleSubmit(event) {
-    event.preventDefault();
-
-    const form = document.getElementById("feedbackForm");
-    const formData = new FormData(form);
-    const entries = {};
-
-    for (let [key, value] of formData.entries()) {
-      entries[key] = value;
-    }
-
-    console.log("Submitted Data:", entries);
-
-    alert("Submission complete! Check the console for data.");
-  }
   </script>
 </body>
 </html>
