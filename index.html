@@ -7,18 +7,36 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f7f9fc;
+      background-color: #000; /* Black background */
+      color: #fff; /* White text */
       padding: 20px;
+      position: relative;
+    }
+    .logo {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%; /* Makes it a circle */
+      object-fit: cover; /* Ensures the image fits inside the circle */
+      border: 2px solid #FFD700; /* Optional: a gold border around logo */
+      background-color: white; /* Optional: fallback background */
     }
     .classmate {
-      background-color: #fff;
+      background-color: #1c1c1c; /* Dark gray background */
       padding: 20px;
       margin-bottom: 20px;
       border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1); /* Soft white shadow */
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: #FFD700; /* Gold color */
     }
     h2 {
       margin-bottom: 10px;
+      color: #FFD700; /* Gold color */
     }
     .category {
       margin: 15px 0;
@@ -40,16 +58,21 @@
       font-size: 16px;
       border: none;
       border-radius: 5px;
-      background-color: #007BFF;
-      color: white;
+      background-color: #FFD700; /* Gold button */
+      color: black;
       cursor: pointer;
+      font-weight: bold;
     }
     button:hover {
-      background-color: #0056b3;
+      background-color: #e6c200; /* Slightly darker gold when hovering */
     }
   </style>
 </head>
 <body>
+
+  <!-- Logo at top right -->
+  <img src="G_League.png" alt="G League Logo" class="logo" />
+
   <h1>G League Evaluation Form</h1>
 
   <form id="feedbackForm" action="https://getform.io/f/bwnqpwma" method="POST">
@@ -59,6 +82,7 @@
     </div>
 
     <div id="formContent"></div>
+
     <button type="submit">Submit</button>
   </form>
 
