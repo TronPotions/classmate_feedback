@@ -131,15 +131,34 @@
       div.innerHTML = `<h2>${name}</h2>`;
 
       categories.forEach(category => {
-        const id = `classmate${index}_${category.replace(/\s+/g, '')}`;
-        div.innerHTML += `
-          <div class="category">
-            <label for="${id}">${category}</label>
-            <input type="range" id="${id}_slider" min="0" max="100" value="50" oninput="document.getElementById('${id}_num').value = this.value">
-            <input type="number" id="${id}_num" name="${name}_${category}" min="0" max="100" value="50" oninput="document.getElementById('${id}_slider').value = this.value">
-          </div>
-        `;
-      });
+  const id = `classmate${index}_${category.replace(/\s+/g, '')}`;
+  div.innerHTML += `
+    <div class="category">
+      <label for="${id}">${category}</label>
+      <input 
+        type="range" 
+        id="${id}_slider" 
+        min="50" 
+        max="99" 
+        value="50" 
+        oninput="document.getElementById('${id}_num').value = this.value"
+      >
+      <input 
+        type="number" 
+        id="${id}_num" 
+        name="${name}_${category}" 
+        min="50" 
+        max="99" 
+        value="50" 
+        oninput="
+          if (this.value > 99) this.value = 99;
+          if (this.value < 50) this.value = 50;
+          document.getElementById('${id}_slider').value = this.value
+        "
+      >
+    </div>
+  `;
+});
 
       formContent.appendChild(div);
     });
