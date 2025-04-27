@@ -24,6 +24,28 @@
       border: 2px solid #FFD700; /* Optional: a gold border around logo */
       background-color: white; /* Optional: fallback background */
     }
+
+    /* SMALL BUTTON image styles (to the left of logo) */
+    .button-img {
+      position: absolute;
+      top: 30px;
+      right: 140px; /* positions it to the left of the logo */
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+      background-color: white;
+      border: 2px solid #FFD700;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* smooth animation */
+    }
+
+    /* Hover effect to make button pop */
+    .button-img:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 8px 16px rgba(255, 215, 0, 0.4); /* glowy gold shadow */
+    }
+    
     .classmate {
       background-color: #1c1c1c; /* Dark gray background */
       padding: 20px;
@@ -71,6 +93,10 @@
 </head>
 <body>
 
+  <a href="https://www.instagram.com/gleague_spikeball/" target="_blank">
+    <img src="Instagram.png" alt="Button" class="button-img" />
+  </a>
+  
   <!-- Logo at top right -->
   <img src="G_League.png" alt="G League Logo" class="logo" />
 
