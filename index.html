@@ -88,10 +88,8 @@
       border: 2px solid white;
       border-radius: 50%;
       cursor: pointer;
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%); /* Perfectly center thumb on track */
-    }
+      transform: translateY(6px); /* <- Smaller shift because thumb is smaller */
+}
 
     input[type="range"]::-moz-range-thumb {
       width: 14px;
