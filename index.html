@@ -82,18 +82,20 @@
     input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 18px;
-      height: 18px;
+      width: 14px;
+      height: 14px;
       background: #FFD700; /* Gold thumb */
       border: 2px solid white;
       border-radius: 50%;
       cursor: pointer;
-      margin-top: -6px; /* Align thumb to center of track */
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%); /* Perfectly center thumb on track */
     }
 
     input[type="range"]::-moz-range-thumb {
-      width: 18px;
-      height: 18px;
+      width: 14px;
+      height: 14px;
       background: #FFD700;
       border: 2px solid white;
       border-radius: 50%;
