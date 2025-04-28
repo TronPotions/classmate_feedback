@@ -69,23 +69,54 @@
       display: block;
       margin-bottom: 5px;
       font-weight: bold;
-    }
+    }/* STYLE FOR RANGE (SLIDER) */
     input[type="range"] {
       width: 60%;
       margin-right: 10px;
+      -webkit-appearance: none;
+      background: #FFD700; /* Gold track */
+      height: 6px;
+      border-radius: 5px;
     }
-    input[type="number"] {
-      width: 60px;
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      background: #FFD700; /* Gold thumb */
+      border: 2px solid white;
+      border-radius: 50%;
+      cursor: pointer;
+      margin-top: -6px; /* Align thumb to center of track */
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      background: #FFD700;
+      border: 2px solid white;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    /* STYLE FOR TEXT AND NUMBER BOXES */
+    input[type="text"], input[type="number"] {
+      background-color: black;
+      color: white;
+      border: 1px solid #FFD700;
+      border-radius: 5px;
+      padding: 8px;
     }
     button {
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      background-color: #FFD700; /* Gold button */
-      color: black;
-      cursor: pointer;
-      font-weight: bold;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;  
+        background-color: #FFD700; /* Gold button */
+        color: black;
+        cursor: pointer;
+        font-weight: bold;
     }
     button:hover {
       background-color: #e6c200; /* Slightly darker gold when hovering */
