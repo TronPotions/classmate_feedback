@@ -110,6 +110,14 @@
       border-radius: 5px;
       padding: 8px;
     }
+
+    /* WHEN TEXT OR NUMBER INPUTS ARE FOCUSED (clicked into) */
+    input[type="text"]:focus, input[type="number"]:focus {
+      background-color: black;
+      color: white;
+      border: 1px solid #FFD700;
+      outline: none; /* Remove ugly blue browser outline */
+    }
     button {
         padding: 10px 20px;
         font-size: 16px;
