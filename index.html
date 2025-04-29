@@ -9,8 +9,8 @@
   <style>
     body {
       font-family: 'Sour Gummy', sans-serif;
-      background-color: #000; /* Black background */
-      color: #fff; /* White text */
+      background-color: #000;
+      color: #fff;
       padding: 20px;
       position: relative;
     }
@@ -20,17 +20,15 @@
       right: 20px;
       width: 100px;
       height: 100px;
-      border-radius: 50%; /* Makes it a circle */
-      object-fit: cover; /* Ensures the image fits inside the circle */
-      border: 2px solid #FFD700; /* Optional: a gold border around logo */
-      background-color: white; /* Optional: fallback background */
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #FFD700;
+      background-color: white;
     }
-
-    /* SMALL BUTTON image styles (to the left of logo) */
     .button-img {
       position: absolute;
       top: 40px;
-      right: 140px; /* positions it to the left of the logo */
+      right: 140px;
       width: 60px;
       height: 60px;
       object-fit: cover;
@@ -38,29 +36,26 @@
       background-color: black;
       border: 2px solid #FFD700;
       cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease; /* smooth animation */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
-    /* Hover effect to make button pop */
     .button-img:hover {
       transform: translateY(-5px) scale(1.1);
-      box-shadow: 0 8px 16px rgba(255, 215, 0, 0.4); /* glowy gold shadow */
+      box-shadow: 0 8px 16px rgba(255, 215, 0, 0.4);
     }
-    
     .classmate {
-      background-color: #1c1c1c; /* Dark gray background */
+      background-color: #1c1c1c;
       padding: 20px;
       margin-bottom: 20px;
       border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1); /* Soft white shadow */
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
     }
     h1 {
       margin-bottom: 20px;
-      color: #FFD700; /* Gold color */
+      color: #FFD700;
     }
     h2 {
       margin-bottom: 10px;
-      color: #FFD700; /* Gold color */
+      color: #FFD700;
     }
     .category {
       margin: 15px 0;
@@ -69,28 +64,25 @@
       display: block;
       margin-bottom: 5px;
       font-weight: bold;
-    }/* STYLE FOR RANGE (SLIDER) */
+    }
     input[type="range"] {
       width: 60%;
       margin-right: 10px;
       -webkit-appearance: none;
-      background: #FFD700; /* Gold track */
+      background: #FFD700;
       height: 6px;
       border-radius: 5px;
     }
-
     input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
-      appearance: none;
       width: 14px;
       height: 14px;
-      background: #FFD700; /* Gold thumb */
+      background: #FFD700;
       border: 2px solid white;
       border-radius: 50%;
       cursor: pointer;
-      transform: translateY(1px); /* <- Smaller shift because thumb is smaller */
-}
-
+      transform: translateY(1px);
+    }
     input[type="range"]::-moz-range-thumb {
       width: 14px;
       height: 14px;
@@ -100,7 +92,6 @@
       cursor: pointer;
     }
 
-    /* STYLE FOR TEXT AND NUMBER BOXES */
     input[type="text"], input[type="number"] {
       background-color: black;
       color: white;
@@ -108,26 +99,32 @@
       border-radius: 5px;
       padding: 8px;
     }
-
-    /* WHEN TEXT OR NUMBER INPUTS ARE FOCUSED (clicked into) */
     input[type="text"]:focus, input[type="number"]:focus {
       background-color: black;
       color: white;
       border: 1px solid #FFD700;
-      outline: none; /* Remove ugly blue browser outline */
+      outline: none;
     }
+    input[disabled] {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .average-bar input[type="range"] {
+      background: #e6c200;
+    }
+
     button {
-        padding: 10px 20px;
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;  
-        background-color: #FFD700; /* Gold button */
-        color: black;
-        cursor: pointer;
-        font-weight: bold;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #FFD700;
+      color: black;
+      cursor: pointer;
+      font-weight: bold;
     }
     button:hover {
-      background-color: #e6c200; /* Slightly darker gold when hovering */
+      background-color: #e6c200;
     }
   </style>
 </head>
@@ -136,8 +133,6 @@
   <a href="https://www.instagram.com/gleague_spikeball/" target="_blank">
     <img src="Instagram.png" alt="Button" class="button-img" />
   </a>
-  
-  <!-- Logo at top right -->
   <img src="G_League.png" alt="G League Logo" class="logo" />
 
   <h1>G League Evaluation Form</h1>
@@ -169,38 +164,79 @@
       div.className = "classmate";
       div.innerHTML = `<h2>${name}</h2>`;
 
+      let sliders = [];
+
       categories.forEach(category => {
-  const id = `classmate${index}_${category.replace(/\s+/g, '')}`;
-  div.innerHTML += `
-    <div class="category">
-      <label for="${id}">${category}</label>
-      <input 
-        type="range" 
-        id="${id}_slider" 
-        min="50" 
-        max="99" 
-        value="50" 
-        oninput="document.getElementById('${id}_num').value = this.value"
-      >
-      <input 
-        type="number" 
-        id="${id}_num" 
-        name="${name}_${category}" 
-        min="50" 
-        max="99" 
-        value="50" 
-        oninput="
-          if (this.value > 99) this.value = 99;
-          if (this.value < 50) this.value = 50;
-          document.getElementById('${id}_slider').value = this.value
-        "
-      >
-    </div>
-  `;
-});
+        const id = `classmate${index}_${category.replace(/\s+/g, '')}`;
+        sliders.push(id);
+        div.innerHTML += `
+          <div class="category">
+            <label for="${id}">${category}</label>
+            <input 
+              type="range" 
+              id="${id}_slider" 
+              min="50" 
+              max="99" 
+              value="50"
+              oninput="
+                document.getElementById('${id}_num').value = this.value;
+                updateAverage(${index});
+              "
+            >
+            <input 
+              type="number" 
+              id="${id}_num" 
+              name="${name}_${category}" 
+              min="50" 
+              max="99" 
+              value="50"
+              oninput="
+                if (this.value > 99) this.value = 99;
+                if (this.value < 50) this.value = 50;
+                document.getElementById('${id}_slider').value = this.value;
+                updateAverage(${index});
+              "
+            >
+          </div>
+        `;
+      });
+
+      // Add average display
+      const avgId = `classmate${index}_Average`;
+      div.innerHTML += `
+        <div class="category average-bar">
+          <label for="${avgId}_slider">Average</label>
+          <input 
+            type="range" 
+            id="${avgId}_slider" 
+            value="50" 
+            min="50" 
+            max="99"
+            disabled
+          >
+          <input 
+            type="number" 
+            id="${avgId}_num" 
+            value="50"
+            disabled
+          >
+        </div>
+      `;
 
       formContent.appendChild(div);
     });
+
+    function updateAverage(index) {
+      const categories = ["Power", "Shooting Accuracy", "Passing", "Defense", "Game Sense", "Hustle"];
+      let total = 0;
+      categories.forEach(category => {
+        const id = `classmate${index}_${category.replace(/\s+/g, '')}_num`;
+        total += parseInt(document.getElementById(id).value) || 0;
+      });
+      const avg = Math.ceil(total / categories.length);
+      document.getElementById(`classmate${index}_Average_slider`).value = avg;
+      document.getElementById(`classmate${index}_Average_num`).value = avg;
+    }
   </script>
 </body>
 </html>
